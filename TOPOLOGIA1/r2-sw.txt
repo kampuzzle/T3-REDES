@@ -3,7 +3,7 @@ hostname r2
 vrf definition v1
     exit
 !
-interface ethrtnet1
+interface ethernet1
     description r2 --> r1
     vrf forwording v1
     ipv4 address 94.20.1.2 255.255.255.252
