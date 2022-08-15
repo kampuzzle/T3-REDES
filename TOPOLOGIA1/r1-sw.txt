@@ -1,25 +1,26 @@
 hostname r1
 !
 vrf definition v1
-    exit
+ exit
 !
 interface ethernet1
-    description r1 --> r2
-    crf forwording v1 
-    ipv4 address 94.20.1.1 255.255.255.252
-    ipv6 address 2020:94:1::1 ffff:ffff:ffff:ffff::
-    no shutdown
-    no log-link-change
-    exit
+ description r1 --> r2
+ vrf forwarding v1
+ ipv4 address 94.20.1.1 255.255.255.252
+ ipv6 address 2020:94:1::1 ffff:ffff:ffff:ffff::
+ no shutdown
+ no log-link-change
+ exit
 !
-    ipv4 route v1 0.0.0.0 0.0.0.0 94.20.4.1
+ipv4 route v1 0.0.0.0 0.0.0.0 94.20.1.2
 !
-    ipv6 route v1 :: :: 2020:94:4::1
+ipv6 route v1 :: :: 2020:94:1::2
 !
 server telnet tel
-    security protocol telnet
-    no exec authorization
-    no login authentication
-    vrf v1
-    exit
+ security protocol telnet
+ no exec authorization
+ no login authentication
+ vrf v1
+ exit
 !
+end

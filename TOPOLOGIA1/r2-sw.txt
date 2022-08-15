@@ -1,43 +1,44 @@
 hostname r2
 !
 vrf definition v1
-    exit
+ exit
 !
 interface ethernet1
-    description r2 --> r1
-    vrf forwording v1
-    ipv4 address 94.20.1.2 255.255.255.252
-    ipv6 address 2020:94:1::2 ffff:ffff:ffff:ffff::
-    no shutdown 
-    no log-link-change
-    exit
+ description r2 --> r1
+ vrf forwording v1
+ ipv4 address 94.20.1.2 255.255.255.252
+ ipv6 address 2020:94:1::2 ffff:ffff:ffff:ffff::
+ no shutdown 
+ no log-link-change
+ exit
 !
 interface ethernet2
-    description r2 --> r3
-    vrf forwarding v1 
-    ipv4 address 94.20.2.1 255.255.255.252
-    ipv6 address 2020:94:2::1 ffff:ffff:ffff:ffff::
-    no shutdown
-    no log-link-change
-    exit
+ description r2 --> r3
+ vrf forwarding v1 
+ ipv4 address 94.20.2.1 255.255.255.252
+ ipv6 address 2020:94:2::1 ffff:ffff:ffff:ffff::
+ no shutdown
+ no log-link-change
+ exit
 !
 interface ethernet3
-    description r2 --> r4 
-    vrf forwarding v1 
-    ipv4 address 94.20.3.1 255.255.255.252
-    ipv6 address 2020:94:3::1 ffff:ffff:ffff:ffff::
-    no shutdown
-    no log-link-change
-    exit
+ description r2 --> r4 
+ vrf forwarding v1 
+ ipv4 address 94.20.3.1 255.255.255.252
+ ipv6 address 2020:94:3::1 ffff:ffff:ffff:ffff::
+ no shutdown
+ no log-link-change
+ exit
 !
-    ipv4 route v1 19.19.4.0 255.255.255.252 94.20.3.2
+ipv4 route v1 94.20.4.0 255.255.255.252 94.20.3.2
 !
-    ipv6 route v1 2019:19:4:: ffff:ffff:ffff:ffff:: 2020:94:3::2
+ipv6 route v1 2020:94:4:: ffff:ffff:ffff:ffff:: 2020:94:3::2
 !
 server telnet tel
-    security protocol telnet
-    no exec authorization
-    no login authentication
-    vrf v1
-    exit
+ security protocol telnet
+ no exec authorization
+ no login authentication
+ vrf v1
+ exit
 !
+end

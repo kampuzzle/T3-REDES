@@ -1,25 +1,25 @@
 hostname r3
 !
 vrf definition v1
-    exit
+ exit
 !
 interface ethrtnet1
-    description r3 --> r2
-    vrf forwording v1
-    ipv4 address 94.20.2.2 255.255.255.252
-    ipv6 address 2020:94:2::2 ffff:ffff:ffff:ffff::
-    no shutdown 
-    no log-link-change
-    exit
+ description r3 --> r2
+ vrf forwording v1
+ ipv4 address 94.20.2.2 255.255.255.252
+ ipv6 address 2020:94:2::2 ffff:ffff:ffff:ffff::
+ no shutdown 
+ no log-link-change
+ exit
 !
 ipv4 route v1 0.0.0.0 0.0.0.0 94.20.2.1
 !
 ipv6 route v1 :: :: 2020:94:2::1
 !
 server telnet tel
-    security protocol telnet
-    no exec authorization
-    no login authentication
-    vrf v1
-    exit
+ security protocol telnet
+ no exec authorization
+ no login authentication
+ vrf v1
+ exit
 !
